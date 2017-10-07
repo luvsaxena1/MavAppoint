@@ -1,0 +1,99 @@
+CREATE TABLE IF NOT EXISTS `mavappointdb`.`department` (
+  `name` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`name`),
+  UNIQUE INDEX `name` (`name` ASC))
+ENGINE = INNODB
+DEFAULT CHARACTER SET = utf8
+
+CREATE TABLE IF NOT EXISTS `mavappointdb`.`department_user` (
+  `name` VARCHAR(45) NOT NULL,
+  `userId` INT(11) NOT NULL,
+  PRIMARY KEY (`name`, `userId`),
+  UNIQUE INDEX `userId` (`userId` ASC, `name` ASC),
+  CONSTRAINT `department_user_ibfk_1`
+    FOREIGN KEY (`name`)
+    REFERENCES `mavappointdb`.`department` (`name`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `department_user_ibfk_2`
+    FOREIGN KEY (`userId`)
+    REFERENCES `mavappointdb`.`user` (`userId`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = INNODB
+DEFAULT CHARACTER SET = utf8
+
+CREATE TABLE department_user
+(     USERID   	 INT   	 NOT NULL,
+      NAME   	 VARCHAR(45)    NOT NULL,
+PRIMARY KEY(USERID,TYPE),
+FOREIGN KEY(USERID) REFERENCES USER(USERID)
+) ENGINE=INNODB;
+
+
+CREATE TABLE IF NOT EXISTS `mavappointdb`.`major` (
+  `name` VARCHAR(45) NOT NULL,
+  `dep_name` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`name`),
+  UNIQUE INDEX `name` (`name` ASC),
+  INDEX `dep_name` (`dep_name` ASC),
+  CONSTRAINT `major_ibfk_1`
+    FOREIGN KEY (`dep_name`)
+    REFERENCES `mavappointdb`.`department` (`name`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = INNODB
+DEFAULT CHARACTER SET = utf8
+
+
+CREATE TABLE IF NOT EXISTS `mavappointdb`.`major_user` (
+  `name` VARCHAR(45) NOT NULL,
+  `userId` INT(11) NOT NULL,
+  PRIMARY KEY (`name`, `userId`),
+  UNIQUE INDEX `userId` (`userId` ASC, `name` ASC),
+  CONSTRAINT `major_user_ibfk_1`
+    FOREIGN KEY (`name`)
+    REFERENCES `mavappointdb`.`major` (`name`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `major_user_ibfk_2`
+    FOREIGN KEY (`userId`)
+    REFERENCES `mavappointdb`.`user` (`userId`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = INNODB
+DEFAULT CHARACTER SET = utf8
+
+CREATE TABLE IF NOT EXISTS `mavappointdb`.`user_advisor` (
+  `userId` INT(11) NOT NULL,
+  `pName` VARCHAR(32) NOT NULL,
+  `notification` VARCHAR(45) NOT NULL,
+  `name_low` VARCHAR(2) NOT NULL,
+  `name_high` VARCHAR(2) NOT NULL,
+  `degree_types` INT(11) NOT NULL,
+  `lead_status` TINYINT(4) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`userId`),
+  UNIQUE INDEX `userId` (`userId` ASC),
+  CONSTRAINT `user_advisor_ibfk_1`
+    FOREIGN KEY (`userId`)
+    REFERENCES `mavappointdb`.`user` (`userId`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = INNODB
+DEFAULT CHARACTER SET = utf8
+
+CREATE TABLE IF NOT EXISTS `mavappointdb`.`user_student` (
+  `userId` INT(11) NOT NULL,
+  `student_Id` INT(11) NOT NULL,
+  `degree_type` INT(11) NOT NULL,
+  `phone_num` VARCHAR(45) NOT NULL,
+  `last_name_initial` VARCHAR(2) NOT NULL,
+  PRIMARY KEY (`userId`),
+  UNIQUE INDEX `userId` (`userId` ASC),
+  CONSTRAINT `user_student_ibfk_1`
+    FOREIGN KEY (`userId`)
+    REFERENCES `mavappointdb`.`user` (`userId`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = INNODB
+DEFAULT CHARACTER SET = utf8
