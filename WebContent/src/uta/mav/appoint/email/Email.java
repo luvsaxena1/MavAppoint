@@ -1,4 +1,4 @@
-\package uta.mav.appoint.email;
+package uta.mav.appoint.email;
 
 import javax.mail.*;
 import javax.mail.internet.*;
@@ -17,7 +17,7 @@ public class Email {
 	}
 	public void sendMail()
 	{
-		final String user = "XXXXXX";
+		final String user = "XXXXX";
         final String pass = "XXXXXX";
  
         Properties props = new Properties();
@@ -41,7 +41,7 @@ public class Email {
         try {
  
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("mavappoint2017@gmail.com"));
+            message.setFrom(new InternetAddress("XXXXXXX"));
             message.setRecipients(Message.RecipientType.TO,
                 InternetAddress.parse(toEmail));
             message.setSubject(subject);
