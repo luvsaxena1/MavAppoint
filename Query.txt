@@ -100,4 +100,7 @@ CREATE TABLE IF NOT EXISTS `mavappointdb`.`user_student` (
 ENGINE = INNODB
 DEFAULT CHARACTER SET = utf8
 
+final String user = "mavappoint2017@gmail.com";
+        final String pass = "utacse2017";
+
 DEFAULT CHARACTER SET = utf8

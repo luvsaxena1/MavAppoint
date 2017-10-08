@@ -1,4 +1,4 @@
-package uta.mav.appoint.email;
+\package uta.mav.appoint.email;
 
 import javax.mail.*;
 import javax.mail.internet.*;
@@ -17,8 +17,8 @@ public class Email {
 	}
 	public void sendMail()
 	{
-		final String user = "mavappoint2017@gmail.com";
-        final String pass = "utacse2017";
+		final String user = "XXXXXX";
+        final String pass = "XXXXXX";
  
         Properties props = new Properties();
 //        props.put("mail.smtp.auth", "true");
